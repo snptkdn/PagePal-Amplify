@@ -6,9 +6,9 @@
 	const handleInput = async (event) => {
 		books = [];
 		const query = event.target.value;
-		if (query === '') {
-			window.location.reload();
-		}
+		// if (query === '') {
+		// 	window.location.reload();
+		// }
 		const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
 		const res_json = await res.json();
 		books = res_json.items;
@@ -24,11 +24,8 @@
 			{#each books as book}
 				<ion-card>
 					{#if 'imageLinks' in book.volumeInfo}
-						<img
-							alt="Silhouette of mountains"
-							src={book.volumeInfo.imageLinks.smallThumbnail}
-						/>
-          {:else}
+						<img alt="Silhouette of mountains" src={book.volumeInfo.imageLinks.smallThumbnail} />
+					{:else}
 						<img
 							alt="Silhouette of mountains"
 							src="https://ionicframework.com/docs/img/demos/card-media.png"
@@ -36,14 +33,16 @@
 					{/if}
 					<ion-card-header>
 						<ion-card-title>{book.volumeInfo.title}</ion-card-title>
-						<ion-card-subtitle>{book.volumeInfo.description}</ion-card-subtitle>
 						{#if 'authors' in book.volumeInfo}
-							<ion-card-subtitle>{book.volumeInfo.authors[0]}</ion-card-subtitle>
+							<ion-card-subtitle>著者: {book.volumeInfo.authors[0]}</ion-card-subtitle>
+						{/if}
+						{#if 'publishedDate' in book.volumeInfo}
+							<ion-card-subtitle>発売日: {book.volumeInfo.publishedDate}</ion-card-subtitle>
 						{/if}
 					</ion-card-header>
 
 					<ion-card-content>
-						Here's a small text description for the card content. Nothing more, nothing less.
+						{book.volumeInfo.description}
 					</ion-card-content>
 				</ion-card>
 			{/each}
