@@ -15,7 +15,7 @@
 	<ion-content>
 		<ion-list>
 			<ion-item button> Users </ion-item>
-			<ion-item button> Books </ion-item>
+			<ion-item button on:click={Navigate}> Books </ion-item>
 			<ion-item button on:click={Navigate}> Ranking </ion-item>
 		</ion-list>
 	</ion-content>
