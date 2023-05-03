@@ -18,7 +18,7 @@
 </script>
 
 <Menu>
-	<ion-searchbar placeholder="book name" on:ionInput={handleInput} />
+	<ion-searchbar placeholder="book name" on:ionChange={handleInput} />
 	<ion-content class="ion-padding">
 		{#if books.length > 0}
 			{#each books as book}
