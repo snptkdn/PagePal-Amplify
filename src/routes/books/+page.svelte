@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { writable } from 'svelte/store';
+	import IonNav from 'ionic-svelte/components/IonNav.svelte';
 	import Menu from '../menu.svelte';
 
 	export let books: Object[] = [];
@@ -13,6 +13,17 @@
 		books = res_json.items;
 
 		console.log(books);
+	};
+
+	let modal;
+	let selectedBook = null;
+	const openModal = (book) => {
+		selectedBook = book;
+		modal.isOpen = true;
+	};
+
+	const closeModal = () => {
+		modal.isOpen = false;
 	};
 </script>
 
@@ -40,18 +51,86 @@
 						{/if}
 					</ion-card-header>
 
-					<ion-card-content>
-						{book.volumeInfo.description}
-					</ion-card-content>
+					<ion-button expand="block" on:click={() => openModal(book)} color="medium">
+						<ion-label>View Detail</ion-label>
+					</ion-button>
 				</ion-card>
 			{/each}
 		{:else}
 			<ion-content>There are no books.</ion-content>
 		{/if}
+
+		<ion-content class="ion-padding">
+			<ion-modal bind:this={modal}>
+				{#if selectedBook !== null}
+					<ion-header>
+						<ion-toolbar>
+							<ion-title>{selectedBook.volumeInfo.title}</ion-title>
+							<ion-buttons slot="end">
+								<ion-button fill="solid" expand="block" on:click={() => openModal(book)} color="warning">
+									<ion-label>読んだ！</ion-label>
+								</ion-button>
+								<ion-button on:click={closeModal}>Close</ion-button>
+							</ion-buttons>
+						</ion-toolbar>
+					</ion-header>
+					<ion-content class="ion-padding">
+						{#if 'imageLinks' in selectedBook.volumeInfo}
+							<img
+								alt="Silhouette of mountains"
+								src={selectedBook.volumeInfo.imageLinks.smallThumbnail}
+							/>
+						{:else}
+							<img
+								alt="Silhouette of mountains"
+								src="https://ionicframework.com/docs/img/demos/card-media.png"
+							/>
+						{/if}
+						<ion-item-group>
+							<ion-item-divider>
+								<ion-label> AUTHOR </ion-label>
+							</ion-item-divider>
+							{#if 'authors' in selectedBook.volumeInfo}
+								<ion-item>{selectedBook.volumeInfo.authors[0]}</ion-item>
+							{:else}
+								<ion-item> No Info </ion-item>
+							{/if}
+
+							<ion-item-divider>
+								<ion-label> PUBLISH DATE </ion-label>
+							</ion-item-divider>
+							{#if 'publishedDate' in selectedBook.volumeInfo}
+								<ion-item>{selectedBook.volumeInfo.publishedDate}</ion-item>
+							{:else}
+								<ion-item> No Info </ion-item>
+							{/if}
+
+							<ion-item-divider>
+								<ion-label> PAGE COUNT </ion-label>
+							</ion-item-divider>
+							{#if 'pageCount' in selectedBook.volumeInfo}
+								<ion-item>{selectedBook.volumeInfo.pageCount}</ion-item>
+							{:else}
+								<ion-item> No Info </ion-item>
+							{/if}
+
+							<br />
+						</ion-item-group>
+            
+						<ion-item class="description">{selectedBook.volumeInfo.description}</ion-item>
+						<br />
+					</ion-content>
+				{/if}
+			</ion-modal>
+		</ion-content>
 	</ion-content>
 </Menu>
 
 <style>
 	ion-card img {
+	}
+
+	.description {
+		margin-bottom: 20px;
 	}
 </style>
