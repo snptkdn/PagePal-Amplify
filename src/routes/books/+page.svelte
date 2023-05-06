@@ -4,7 +4,6 @@
 
 	export let books: Object[] = [];
 	const handleInput = async (event) => {
-		books = [];
 		const query = event.target.value;
 		if (query === '') {
 			window.location.reload();
