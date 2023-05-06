@@ -65,11 +65,13 @@
 				{#if selectedBook !== null}
 					<ion-header>
 						<ion-toolbar>
-							<ion-title>{selectedBook.volumeInfo.title}</ion-title>
-							<ion-buttons slot="end">
-								<ion-button fill="solid" expand="block" on:click={() => openModal(book)} color="warning">
+							<ion-buttons slot="secondary">
+								<ion-button expand="block" on:click={() => openModal(book)} color="warning">
 									<ion-label>読んだ！</ion-label>
 								</ion-button>
+							</ion-buttons>
+							<ion-title>{selectedBook.volumeInfo.title}</ion-title>
+							<ion-buttons slot="primary">
 								<ion-button on:click={closeModal}>Close</ion-button>
 							</ion-buttons>
 						</ion-toolbar>
@@ -116,7 +118,7 @@
 
 							<br />
 						</ion-item-group>
-            
+
 						<ion-item class="description">{selectedBook.volumeInfo.description}</ion-item>
 						<br />
 					</ion-content>
