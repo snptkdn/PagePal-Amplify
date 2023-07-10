@@ -1,8 +1,12 @@
 <script>
 	import { goto } from '$app/navigation';
 
-	const Navigate = () => {
+	const NavigateBooks = () => {
 		goto('/books');
+	};
+  
+	const NavigateUsers = () => {
+		goto('/users');
 	};
 </script>
 
@@ -14,9 +18,9 @@
 	</ion-header>
 	<ion-content>
 		<ion-list>
-			<ion-item button> Users </ion-item>
-			<ion-item button on:click={Navigate}> Books </ion-item>
-			<ion-item button on:click={Navigate}> Ranking </ion-item>
+			<ion-item button on:click={NavigateUsers}> Users </ion-item>
+			<ion-item button on:click={NavigateBooks}> Books </ion-item>
+			<ion-item button on:click={NavigateBooks}> Ranking </ion-item>
 		</ion-list>
 	</ion-content>
 	<ion-footer>
