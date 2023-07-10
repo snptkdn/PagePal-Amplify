@@ -1,5 +1,8 @@
 <script lang='ts'>
 	import { setupIonicBase } from 'ionic-svelte';
+  import { Amplify, Auth } from 'aws-amplify';
+  import awsconfig from './aws-exports';
+  Amplify.configure(awsconfig);
 
 	/* Call Ionic's setup routine */
 	setupIonicBase();
