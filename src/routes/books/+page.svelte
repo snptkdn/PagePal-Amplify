@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IonNav from 'ionic-svelte/components/IonNav.svelte';
 	import Menu from '../menu.svelte';
-  import { BackendHost } from '../../store.js'
+  import { BackendHost, CurrentUser } from '../../store.js'
 
 	export let books: Object[] = [];
 	const handleInput = async (event) => {
@@ -45,7 +45,7 @@
 		console.log(target_book.ID);
 
 		const history_data = {
-			user_id: 1,
+			user_id: $CurrentUser.ID,
 			book_id: target_book.ID,
       is_read: true
 		};
