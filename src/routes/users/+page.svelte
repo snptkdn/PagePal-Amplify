@@ -3,17 +3,6 @@
 </script>
 
 <link rel="stylesheet" href="https://unpkg.com/charts.css/dist/charts.min.css" />
-<ion-header translucent={true}>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button />
-		</ion-buttons>
-
-		<ion-buttons slot="end" />
-
-		<ion-title>Users</ion-title>
-	</ion-toolbar>
-</ion-header>
 
 <ion-content fullscreen>
 	<ion-list>
@@ -27,8 +16,6 @@
 		</ion-item>
 	</ion-list>
 </ion-content>
-
-<Menu />
 
 <style>
 	ion-card img {

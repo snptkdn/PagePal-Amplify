@@ -3,6 +3,7 @@
 	import Menu from '../menu.svelte';
   import { BackendHost, CurrentUser } from '../../store.js'
 
+
 	export let books: Object[] = [];
 	const handleInput = async (event) => {
 		const query = event.target.value;
@@ -71,7 +72,6 @@
 	};
 </script>
 
-<Menu>
 	<ion-searchbar placeholder="book name" on:ionChange={handleInput} />
 	<ion-content class="ion-padding">
 		{#if books.length > 0}
@@ -176,7 +176,6 @@
 			</ion-modal>
 		</ion-content>
 	</ion-content>
-</Menu>
 
 <style>
 	ion-card img {
