@@ -30,8 +30,6 @@
         Name: userName.value
       });
       error = "ログインに成功しました！"
-      goto('/mypage');
-      
     } else {
       error = "ユーザーネームかパスワードが間違っています。";
     }
