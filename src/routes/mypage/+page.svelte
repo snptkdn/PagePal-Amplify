@@ -2,13 +2,15 @@
 	import Menu from '../menu.svelte';
 	import { onMount } from 'svelte';
   import { BackendHost} from '../../store.js'
+  import { CurrentUser } from '../../store.js';
 
 	let histories = [];
 
 	onMount(async () => {
-		const response = await fetch(`${$BackendHost}/read_histories?user_id=1`);
-		histories = await response.json();
-    console.log(histories);
+    if ($CurrentUser.ID !== 0) {
+      const response = await fetch(`${$BackendHost}/read_histories?user_id=${$CurrentUser.ID}`);
+      histories = await response.json();
+    }
 	});
 </script>
 

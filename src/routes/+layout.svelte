@@ -1,5 +1,14 @@
-<script lang='ts'>
+<script lang="ts">
 	import { setupIonicBase } from 'ionic-svelte';
+	import { CurrentUser } from '../store';
+	import { beforeUpdate } from 'svelte';
+	import { goto } from '$app/navigation';
+
+	beforeUpdate(() => {
+    if ($CurrentUser.ID === 0) {
+      goto('/');
+    }
+  });
 
 	/* Call Ionic's setup routine */
 	setupIonicBase();
