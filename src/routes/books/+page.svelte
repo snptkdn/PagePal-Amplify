@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IonNav from 'ionic-svelte/components/IonNav.svelte';
 	import Menu from '../menu.svelte';
+  import { BackendHost } from '../../store.js'
 
 	export let books: Object[] = [];
 	const handleInput = async (event) => {
@@ -20,11 +21,13 @@
 		const isbn = book.volumeInfo.industryIdentifiers.find((id) => (id.type = 'ISBN_13')).identifier;
 		const data = {
 			isbn: isbn,
-			author: book.volumeInfo.authors[0],
+			author: book.volumeInfo.authors ? book.volumeInfo.authors[0] : null,
 			page_count: book.volumeInfo.pageCount,
-			title: book.volumeInfo.title
+			title: book.volumeInfo.title,
+      image_url: book.volumeInfo.imageLinks?.smallThumbnail,
+      description: book.volumeInfo.description,
 		};
-		await fetch(`http://localhost:3000/books`, {
+		await fetch(`${$BackendHost}/books`, {
 			method: 'POST',
 			mode: 'no-cors',
 			headers: {
@@ -33,7 +36,7 @@
 			body: JSON.stringify(data)
 		});
 
-		const target_book = await fetch(`http://localhost:3000/books?isbn=${isbn}`, {
+		const target_book = await fetch(`${$BackendHost}/books?isbn=${isbn}`, {
 			mode: 'cors'
 		})
 			.then((res) => res.json())
@@ -47,7 +50,7 @@
       is_read: true
 		};
 
-		await fetch(`http://localhost:3000/read_histories`, {
+		await fetch(`${$BackendHost}/read_histories`, {
 			method: 'POST',
 			mode: 'no-cors',
 			headers: {
