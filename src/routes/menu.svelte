@@ -8,6 +8,10 @@
 	const NavigateUsers = () => {
 		goto('/users');
 	};
+  
+	const NavigateMyPage = () => {
+		goto('/mypage');
+	};
 </script>
 
 <ion-menu content-id="main-content">
@@ -20,7 +24,7 @@
 		<ion-list>
 			<ion-item button on:click={NavigateUsers}> Users </ion-item>
 			<ion-item button on:click={NavigateBooks}> Books </ion-item>
-			<ion-item button on:click={NavigateBooks}> Ranking </ion-item>
+			<ion-item button on:click={NavigateMyPage}> MyPage </ion-item>
 		</ion-list>
 	</ion-content>
 	<ion-footer>
