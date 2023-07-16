@@ -2,7 +2,14 @@
 	import IonNav from 'ionic-svelte/components/IonNav.svelte';
 	import Menu from '../menu.svelte';
   import { BackendHost, CurrentUser } from '../../store.js'
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
 
+  onMount(async () => {
+    if ($CurrentUser.ID === 0) {
+      goto('/');
+    }
+  });
 
 	export let books: Object[] = [];
 	const handleInput = async (event) => {

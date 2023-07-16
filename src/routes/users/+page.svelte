@@ -1,5 +1,14 @@
 <script lang="ts">
 	import Menu from '../menu.svelte';
+  import { BackendHost, CurrentUser } from '../../store.js'
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
+
+  onMount(async () => {
+    if ($CurrentUser.ID === 0) {
+      goto('/');
+    }
+  });
 </script>
 
 <link rel="stylesheet" href="https://unpkg.com/charts.css/dist/charts.min.css" />

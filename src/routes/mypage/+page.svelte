@@ -1,12 +1,16 @@
 <script lang="ts">
 	import Menu from '../menu.svelte';
-	import { onMount } from 'svelte';
   import { BackendHost} from '../../store.js'
   import { CurrentUser } from '../../store.js';
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
 
 	let histories = [];
 
 	onMount(async () => {
+    if ($CurrentUser.ID === 0) {
+      goto('/');
+    }
     if ($CurrentUser.ID !== 0) {
       const response = await fetch(`${$BackendHost}/read_histories?user_id=${$CurrentUser.ID}`);
       histories = await response.json();
