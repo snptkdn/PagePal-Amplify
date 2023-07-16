@@ -2,6 +2,7 @@
 	import Menu from './menu.svelte';
   import { BackendHost } from '../store';
   import { CurrentUser } from '../store';
+	import { goto } from '$app/navigation';
   
   let userName = null;
   let password = null;
@@ -29,6 +30,8 @@
         Name: userName.value
       });
       error = "ログインに成功しました！"
+      goto('/mypage');
+      
     } else {
       error = "ユーザーネームかパスワードが間違っています。";
     }
