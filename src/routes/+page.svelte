@@ -15,9 +15,9 @@
 		const res = await fetch(`${$BackendHost}/signin`, {
 			method: 'POST',
 			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
+			// headers: {
+			// 	'Content-Type': 'application/json'
+			// },
 			body: JSON.stringify(data)
 		});
 
@@ -42,9 +42,9 @@
 		const res = await fetch(`${$BackendHost}/signup`, {
 			method: 'POST',
 			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
+			// headers: {
+			// 	'Content-Type': 'application/json'
+			// },
 			body: JSON.stringify(data)
 		});
 
