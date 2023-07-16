@@ -3,12 +3,7 @@
 	import { CurrentUser } from '../store';
 	import { beforeUpdate } from 'svelte';
 	import { goto } from '$app/navigation';
-
-	beforeUpdate(() => {
-    if ($CurrentUser.ID === 0) {
-      goto('/');
-    }
-  });
+	import Menu from './menu.svelte';
 
 	/* Call Ionic's setup routine */
 	setupIonicBase();
@@ -53,5 +48,7 @@
 </script>
 
 <ion-app>
-	<slot />
+  <Menu>
+    <slot />
+  </Menu>
 </ion-app>
