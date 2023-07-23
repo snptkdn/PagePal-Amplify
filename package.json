@@ -34,6 +34,7 @@
 		"@capacitor/core": "^4.8.0",
 		"@ionic/core": "^7.0.3",
 		"ionic-svelte": "^0.5.78",
-		"ionicons": "^7.1.0"
+		"ionicons": "^7.1.0",
+		"svelte-cookie": "^1.0.1"
 	}
 }

@@ -4,15 +4,18 @@
   import { CurrentUser } from '../../store.js';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
+  import { getCookie } from 'svelte-cookie';
 
 	let histories = [];
 
 	onMount(async () => {
-    if ($CurrentUser.ID === 0) {
-      goto('/');
+    const userID = getCookie('userID');
+    if (!userID) {
+      window.location.href = '/';
+      $CurrentUser.ID = Number(userID);
     }
-    if ($CurrentUser.ID !== 0) {
-      const response = await fetch(`${$BackendHost}/read_histories?user_id=${$CurrentUser.ID}`);
+    if (userID) {
+      const response = await fetch(`${$BackendHost}/read_histories?user_id=${getCookie('userID')}`);
       histories = await response.json();
     }
 	});

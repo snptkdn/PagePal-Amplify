@@ -4,11 +4,14 @@
   import { BackendHost, CurrentUser } from '../../store.js'
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
+  import { getCookie } from 'svelte-cookie';
 
   onMount(async () => {
-    if ($CurrentUser.ID === 0) {
-      goto('/');
+    const userID = getCookie('userID');
+    if (!userID) {
+      window.location.href = '/';
     }
+    $CurrentUser.ID = Number(userID);
   });
 
 	export let books: Object[] = [];

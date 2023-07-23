@@ -2,6 +2,7 @@
 	import { BackendHost } from '../store';
 	import { CurrentUser } from '../store';
 	import { goto } from '$app/navigation';
+  import { getCookie, setCookie, deleteCookie } from 'svelte-cookie';
 
 	let userName = null;
 	let password = null;
@@ -21,14 +22,10 @@
 			body: JSON.stringify(data)
 		});
 
-		console.log(res);
 		if (res.ok) {
 			const userID = await res.text();
-			CurrentUser.set({
-				ID: Number(userID),
-				Name: userName.value
-			});
 			error = 'ログインに成功しました！';
+      setCookie('userID', Number(userID), 30, true);
 
       goto('/mypage');
 		} else {
