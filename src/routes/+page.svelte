@@ -26,6 +26,7 @@
 			const userID = await res.text();
 			error = 'ログインに成功しました！';
       setCookie('userID', Number(userID), 30, true);
+      setCookie('userName', userName, 30, true);
 
       goto('/mypage');
 		} else {
