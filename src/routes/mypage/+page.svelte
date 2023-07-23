@@ -9,9 +9,11 @@
 	import { getCookie } from 'svelte-cookie';
 
 	let histories = [];
+	let userName = '';
 
 	onMount(async () => {
 		const userID = getCookie('userID');
+		userName = getCookie('userName');
 		if (!userID) {
 			window.location.href = '/';
 			$CurrentUser.ID = Number(userID);
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://unpkg.com/charts.css/dist/charts.min.css" />
 
 <ion-content fullscreen>
-  <UserStats {histories} />
+	<UserStats {histories} {userName} />
 	<BookShelf {histories} />
 </ion-content>
 
