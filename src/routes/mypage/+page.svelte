@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Menu from '../menu.svelte';
+  import BookShelf from '../Components/BookShelf.svelte'
   import { BackendHost} from '../../store.js'
   import { CurrentUser } from '../../store.js';
   import { onMount } from 'svelte';
@@ -22,23 +23,11 @@
 </script>
 
 <link rel="stylesheet" href="https://unpkg.com/charts.css/dist/charts.min.css" />
-<ion-header translucent={true}>
-	<ion-searchbar placeholder="Search Books" />
-</ion-header>
 
 <ion-content fullscreen>
-	<ion-list>
-		<ion-list-header>BookShelf</ion-list-header>
-		{#each histories as history}
-			<ion-item>
-				<ion-label>
-					<h2>{history.Book.title}</h2>
-					<h3>{history.Book.author}</h3>
-					<p>{history.Book.description}</p>
-				</ion-label>
-			</ion-item>
-		{/each}
-	</ion-list>
+  <BookShelf
+    {histories}
+  />
 </ion-content>
 
 
