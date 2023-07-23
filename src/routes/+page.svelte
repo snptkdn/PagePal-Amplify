@@ -79,7 +79,7 @@
 		<ion-input label="UserName" placeholder="Enter user name" bind:this={userName} />
 	</ion-item>
 	<ion-item>
-		<ion-input label="Password" placeholder="Enter password" bind:this={password} />
+		<ion-input type="password" label="Password" placeholder="Enter password" bind:this={password} />
 	</ion-item>
 	<ion-item>
 		<ion-button
