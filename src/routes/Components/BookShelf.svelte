@@ -4,7 +4,7 @@
   const getDateString = (date) => {
     const datetime = new Date(date);
     console.log(typeof datetime);
-    return datetime.getFullYear() + "年" + datetime.getMonth() + "月" + datetime.getDate() + "日"
+    return datetime.getFullYear() + "年" + datetime.getMonth()+1 + "月" + datetime.getDate() + "日"
   }
 </script>
 
