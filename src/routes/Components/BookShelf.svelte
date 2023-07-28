@@ -1,11 +1,12 @@
 <script>
 	export let histories;
 
-  const getDateString = (date) => {
-    const datetime = new Date(date);
-    console.log(typeof datetime);
-    return datetime.getFullYear() + "年" + datetime.getMonth()+1 + "月" + datetime.getDate() + "日"
-  }
+	const getDateString = (date) => {
+		const datetime = new Date(date);
+		console.log(typeof datetime.getMonth());
+		const month = datetime.getMonth() + 1;
+		return datetime.getFullYear() + '年' + month + '月';
+	};
 </script>
 
 <ion-card>
@@ -14,11 +15,9 @@
 		{#each histories as history}
 			<ion-item>
 				<ion-label>
-					<img
-						class="book_image"
-						alt="image"
-						src={history.Book.image_url}
-					/>
+					{#if history.Book.image_url !== ''}
+						<img class="book_image" alt="image" src={history.Book.image_url} />
+					{/if}
 					<h2>{history.Book.title}</h2>
 					<h3>{history.Book.author}</h3>
 					<p>{history.Book.description}</p>
