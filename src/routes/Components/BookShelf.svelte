@@ -23,7 +23,18 @@
 					<h3>{history.Book.author}</h3>
 					<p>{history.Book.description}</p>
 					<h3>Rating</h3>
-					<p>{history.Rate}</p>
+					<p class="rate">{history.Rate}</p>
+					{#if history.Rate < 60}
+						<ion-progress-bar color="danger" value={history.Rate/100} />
+					{:else if history.Rate < 80}
+						<ion-progress-bar color="warning" value={history.Rate/100} />
+					{:else if history.Rate < 90}
+						<ion-progress-bar color="success" value={history.Rate/100} />
+					{:else if history.Rate < 95}
+						<ion-progress-bar color="secondary" value={history.Rate/100} />
+					{:else}
+						<ion-progress-bar color="primary" value={history.Rate/100} />
+					{/if}
 					<h3>Date</h3>
 					<p>{getDateString(history.Date)}</p>
 				</ion-label>
