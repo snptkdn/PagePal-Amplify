@@ -33,7 +33,7 @@
 
 	const postReadHistory = async (book, rate, date) => {
     console.log(date);
-		const isbn = book.volumeInfo.industryIdentifiers.find((id) => (id.type = 'ISBN_13')).identifier;
+		const isbn = book.volumeInfo.industryIdentifiers.find((id) => id.type === 'ISBN_13' || id.type === 'ISBN_10' || id.type === 'OTHER').identifier;
 		const data = {
 			isbn: isbn,
 			author: book.volumeInfo.authors ? book.volumeInfo.authors[0] : null,
@@ -100,7 +100,7 @@
 <ion-content class="ion-padding">
 	{#if books.length > 0}
 		{#each books as book}
-			{#if book.volumeInfo.industryIdentifiers.some((id) => id.type == 'ISBN_13')}
+			<!-- {#if book.volumeInfo.industryIdentifiers.some((id) => id.type === 'ISBN_13' || id.type === 'ISBN_10' || id.type === 'Other')} -->
 				<ion-card>
 					{#if 'imageLinks' in book.volumeInfo}
 						<img alt="Silhouette of mountains" src={book.volumeInfo.imageLinks.smallThumbnail} />
@@ -124,7 +124,7 @@
 						<ion-label>View Detail</ion-label>
 					</ion-button>
 				</ion-card>
-			{/if}
+			<!-- {/if} -->
 		{/each}
 	{:else}
 		<ion-content>There are no books.</ion-content>
