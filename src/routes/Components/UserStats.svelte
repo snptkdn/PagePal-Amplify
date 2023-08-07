@@ -24,17 +24,17 @@
 		console.log(histories);
 		const today = new Date();
 		count_books_month = histories.filter((history) =>
-			isThisMonth(new Date(history.CreatedAt), today)
+			isThisMonth(new Date(history.Date), today)
 		).length;
 		count_books_year = histories.filter((history) =>
-			isThisYear(new Date(history.CreatedAt), today)
+			isThisYear(new Date(history.Date), today)
 		).length;
 		count_books_all = histories.length;
 		count_pages_month = histories
-			.filter((history) => isThisMonth(new Date(history.CreatedAt), today))
+			.filter((history) => isThisMonth(new Date(history.Date), today))
 			.reduce((acc, history) => acc + history.Book.page_count, 0);
 		count_pages_year = histories
-			.filter((history) => isThisYear(new Date(history.CreatedAt), today))
+			.filter((history) => isThisYear(new Date(history.Date), today))
 			.reduce((acc, history) => acc + history.Book.page_count, 0);
 		count_pages_all = histories
 			.reduce((acc, history) => acc + history.Book.page_count, 0);
