@@ -26,8 +26,8 @@
 	};
 </script>
 
-{#each histories as history}
-	<ion-content class="ion-padding">
+<ion-content class="ion-padding">
+	{#each histories as history}
 		<ion-card>
 			<ion-card-header>
 				<ion-card-title>
@@ -46,8 +46,8 @@
 				</ion-label>
 			</ion-item>
 		</ion-card>
-	</ion-content>
-{/each}
+	{/each}
+</ion-content>
 
 <style>
 	.card_body {
