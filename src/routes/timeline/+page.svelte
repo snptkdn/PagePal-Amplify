@@ -20,6 +20,7 @@
 		if (userID) {
 			const response = await fetch(`${$BackendHost}/read_histories?user_id=${getCookie('userID')}`);
 			histories = await response.json();
+			histories.reverse();
 		}
 	});
 </script>
