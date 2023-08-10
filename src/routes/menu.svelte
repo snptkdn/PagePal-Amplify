@@ -12,6 +12,10 @@
 	const NavigateMyPage = () => {
 		goto('/mypage');
 	};
+  
+	const NavigateTimeLine = () => {
+		goto('/timeline');
+	};
 </script>
 
 <ion-menu content-id="main-content">
@@ -25,6 +29,7 @@
 			<ion-item button on:click={NavigateUsers}> Users </ion-item>
 			<ion-item button on:click={NavigateBooks}> Books </ion-item>
 			<ion-item button on:click={NavigateMyPage}> MyPage </ion-item>
+			<ion-item button on:click={NavigateTimeLine}> TimeLine </ion-item>
 		</ion-list>
 	</ion-content>
 	<ion-footer>
