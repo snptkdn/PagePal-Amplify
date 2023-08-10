@@ -28,7 +28,7 @@
       setCookie('userID', Number(userID), 30, true);
       setCookie('userName', userName.value, 30, true);
 
-      goto('/mypage');
+      goto('/timeline');
 		} else {
 			error = 'ユーザーネームかパスワードが間違っています。';
 		}
